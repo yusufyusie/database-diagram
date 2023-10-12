@@ -13,10 +13,16 @@ ALTER TABLE medical_histories
 ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY;
 -- Create patients table
 CREATE TABLE patients (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name varchar(255),
     date_of_birth DATE
 );
 -- Create treatments table
+CREATE TABLE treatments (
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    type varchar(255),
+    name varchar(255),
+);
 -- Create invoices table
+
 -- Create invoice_items table
