@@ -19,6 +19,7 @@ CREATE TABLE patients (
     name varchar(255),
     date_of_birth DATE
 );
+CREATE INDEX patient_id_index ON medical_histories(patient_id);
 -- Create a table named treatments with the following columns
 CREATE TABLE treatments (
     id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -35,6 +36,7 @@ CREATE TABLE invoices (
     FOREIGN KEY (medical_history_id)
     REFERENCES medical_histories (id)
 );
+CREATE INDEX medical_history_id_index ON invoices(medical_history_id);
 -- Create a table named invoice_items with the following columns
 CREATE TABLE invoice_items (
     id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -48,7 +50,8 @@ CREATE TABLE invoice_items (
     FOREIGN KEY (treatment_id)
     REFERENCES treatments (id)
 );
-
+CREATE INDEX invoice_id_index ON invoice_items(invoice_id);
+CREATE INDEX treatment_id_index ON invoice_items(treatment_id);
 -- Join medical_histories and treatments tables from many-to-many relationships
 CREATE TABLE medical_histories_treatments(
     medical_histories_id INT,
@@ -59,3 +62,7 @@ CREATE TABLE medical_histories_treatments(
     REFERENCES treatments (id)
     PRIMARY KEY (medical_histories_id, treatments_id)
 );
+
+--Creating index for the joined table to improve performance
+CREATE INDEX medical_histories_id_index ON medical_histories_treatments(medical_histories_id);
+CREATE INDEX treatments_id_index ON medical_histories_treatments(treatments_id);
