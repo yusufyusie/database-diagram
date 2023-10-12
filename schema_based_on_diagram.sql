@@ -24,5 +24,12 @@ CREATE TABLE treatments (
     name varchar(255),
 );
 -- Create invoices table
-
+CREATE TABLE invoices (
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+     total_amount FLOAT,
+    generated_at TIMESTAMP,
+    payed_at TIMESTAMP,
+    medical_history_id INT,
+    FOREIGN KEY (medical_history_id) REFERENCES medical_histories (id)
+);
 -- Create invoice_items table
