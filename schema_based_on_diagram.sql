@@ -12,6 +12,11 @@ CREATE TABLE medical_histories (
 ALTER TABLE medical_histories
 ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY;
 -- Create patients table
+CREATE TABLE patients (
+    id INT PRIMARY KEY,
+    name varchar(255),
+    date_of_birth DATE
+);
 -- Create treatments table
 -- Create invoices table
 -- Create invoice_items table
