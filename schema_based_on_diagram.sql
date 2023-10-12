@@ -6,7 +6,9 @@ CREATE TABLE medical_histories (
     id INT PRIMARY KEY,
     admitted_at TIMESTAMP,
     patient_id INT,
-    status varchar(255)
+    status varchar(255),
+    FOREIGN KEY (patient_id),
+    REFERENCES patients (id)
 );
 -- Add autoincremented PRIMARY KEY of id
 ALTER TABLE medical_histories
@@ -30,7 +32,8 @@ CREATE TABLE invoices (
     generated_at TIMESTAMP,
     payed_at TIMESTAMP,
     medical_history_id INT,
-    FOREIGN KEY (medical_history_id) REFERENCES medical_histories (id)
+    FOREIGN KEY (medical_history_id),
+    REFERENCES medical_histories (id)
 );
 -- Create a table named invoice_items with the following columns
 CREATE TABLE invoice_items (
@@ -40,6 +43,8 @@ CREATE TABLE invoice_items (
     total_price DECIMAL,
     invoice_id INT,
     treatment_id INT,
-    FOREIGN KEY (invoice_id) REFERENCES invoices (id),
-    FOREIGN KEY (treatment_id) REFERENCES treatments (id),
+    FOREIGN KEY (invoice_id),
+    REFERENCES invoices (id),
+    FOREIGN KEY (treatment_id),
+    REFERENCES treatments (id)
 );
