@@ -54,8 +54,8 @@ CREATE TABLE medical_histories_treatments(
     medical_histories_id INT,
     treatments_id INT,
     FOREIGN KEY (medical_histories_id)
-    REFERENCES medical_histories (id),
+    REFERENCES medical_histories (id)
     FOREIGN KEY (treatments_id)
-    REFERENCES treatments (id),
+    REFERENCES treatments (id)
     PRIMARY KEY (medical_histories_id, treatments_id)
 );
